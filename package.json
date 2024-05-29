@@ -1,0 +1,177 @@
+{
+  "name": "@cellebrite/design-system",
+  "version": "1.108.0",
+  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/esm/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "precommit": "lint-staged && npm run test:coverage",
+    "start": "npm run storybook",
+    "clean": "rimraf dist",
+    "build": "npm run clean && npm run build:cjs && npm run build:esm",
+    "build:cjs": "cross-env BABEL_ENV=production babel --extensions \".js,.jsx,.tsx,.ts\" src -d dist",
+    "build:esm": "cross-env BABEL_ENV=production babel --no-babelrc  --extensions \".js,.jsx,.tsx,.ts\" src -d dist/esm --config-file ./.babelrc-es.json",
+    "postbuild": "npx tsc --project tsconfig.build.json --declaration --emitDeclarationOnly --declarationMap --noEmit false --outDir  dist",
+    "test": "react-scripts test --watchAll=true",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -s public,./src/assets",
+    "build-storybook": "build-storybook -s public,./src/assets",
+    "format:check": "prettier --check \"src/**/*.{js,ts,tsx}\"",
+    "format:write": "prettier --write \"src/**/*.{js,ts,tsx}\"",
+    "lint:check": "eslint \"src/**/*.{ts,tsx}\" --max-warnings=0",
+    "lint:write": "eslint \"src/**/*.{ts,tsx}\" --fix",
+    "svg:convert": "npx tsx ./src/util/svg-converter.ts"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.0.0",
+    "@iconify-icons/ant-design": "^1.0.0",
+    "@iconify-icons/eva": "^1.0.0",
+    "@iconify-icons/ic": "^1.1.1",
+    "@iconify-icons/vscode-icons": "^1.0.2",
+    "@iconify/react": "^1.1.3",
+    "@mui/base": "5.0.0-alpha.69",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/lab": "5.0.0-alpha.69",
+    "@mui/material": "5.15.12",
+    "@mui/styled-engine": "5.15.11",
+    "@mui/styles": "5.15.12",
+    "@mui/system": "5.15.12",
+    "@mui/utils": "5.15.12",
+    "@mui/x-data-grid": "^6.19.6",
+    "@mui/x-data-grid-pro": "6.19.6",
+    "axios": "^1.6.2",
+    "clsx": "^1.2.1",
+    "date-fns": "^2.21.1",
+    "filesize": "^6.1.0",
+    "framer-motion": "^4.0.0",
+    "history": "5.3.0",
+    "lodash": "^4.17.19",
+    "notistack": "2.0.3",
+    "prop-types": "^15.8.1",
+    "randomcolor": "^0.6.2",
+    "react": "^17.0.2",
+    "react-date-range": "^1.3.0",
+    "react-dom": "^17.0.2",
+    "react-dropzone": "^11.3.1",
+    "react-idle-timer": "^5.5.3",
+    "react-intersection-observer": "^8.34.0",
+    "react-resize-detector": "^6.7.6",
+    "react-router-dom": "^5.2.0",
+    "react-svg": "^11.0.41",
+    "react-virtualized-auto-sizer": "^1.0.5",
+    "react-window": "^1.8.6",
+    "react-window-infinite-loader": "^1.0.7",
+    "recharts": "^2.5.0",
+    "simplebar-react": "^2.4.3",
+    "tss-react": "^3.4.1",
+    "use-resize-observer": "^9.0.2",
+    "uuid": "^9.0.0",
+    "web-vitals": "^1.1.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/preset-react": "7.18.6",
+    "@storybook/addon-actions": "6.3.7",
+    "@storybook/addon-essentials": "6.3.7",
+    "@storybook/addon-links": "6.3.7",
+    "@storybook/node-logger": "6.3.7",
+    "@storybook/preset-create-react-app": "^3.1.6",
+    "@storybook/react": "6.3.7",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/history": "5.0.0",
+    "@types/lodash": "^4.14.168",
+    "@types/randomcolor": "^0.5.6",
+    "@types/react-date-range": "^1.1.7",
+    "@types/react-is": "^18.2.4",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-virtualized-auto-sizer": "^1.0.0",
+    "@types/react-window-infinite-loader": "^1.0.3",
+    "@types/svg-parser": "^2.0.6",
+    "@types/uuid": "^9.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.21.0",
+    "babel-loader": "8.1.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-storybook": "^0.5.6",
+    "hast-util-to-html": "^9.0.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
+    "react-scripts": "4.0.3",
+    "resize-observer-polyfill": "^1.5.1",
+    "storybook-addon-designs": "^6.3.1",
+    "storybook-addon-material-ui5": "^1.0.0",
+    "storybook-react-router": "^1.0.8",
+    "svg-parser": "^2.0.4",
+    "typescript": "^4.2.3",
+    "webpack": "4.44.2"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(@babel/runtime|@mui/material|@iconify-icons/eva)|hast-util-whitespace|comma-separated-tokens|space-separated-tokens|hast-util-to-html|html-void-elements|property-information|ccount|zwitch|stringify-entities|character-entities-legacy|character-entities-html4/).*/"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/**/index.{ts,tsx}",
+      "!src/**/Animate/*.{ts,tsx}",
+      "!src/**/*.constant.{ts,tsx}",
+      "!src/**/*.stories.{ts,tsx}",
+      "!src/**/react-app-env.d.ts",
+      "!src/theme/**/*.{ts,tsx}",
+      "!src/assets/**/*.{ts,tsx}",
+      "!src/components/Guardian/Summary/**/*.{ts,tsx}",
+      "!src/components/AudioPlayer/useAudioPlayer.ts",
+      "!src/components/Charts/**/*.{ts,tsx}",
+      "!<rootDir>/node_modules/"
+    ],
+    "moduleNameMapper": {
+      "^test-utils$": "<rootDir>/src/util/test-utils"
+    },
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 85,
+        "lines": 89,
+        "statements": 90
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false
+}
