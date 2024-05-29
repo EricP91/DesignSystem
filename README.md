@@ -1,12 +1,9 @@
-# Cellebrite's Design System
+# Design System
 
 This project is based on material ui template: https://www.minimals.cc/
 
 Before using please make sure that you are complying to the license terms:
 https://material-ui.com/store/license/
-
-Template source code is available here:
-https://gitlab-forensic.cellebrite.com/di-sharing/minimal_material_kit_v1.1.0
 
 ## General Guidelines
 
@@ -62,25 +59,3 @@ In order for theme styling to be applied, your app should be wrapped with:
 
 </ThemeConfig>
 ```
-
-## How to consume locally
-
-`npm run build` (in package dir)
-
-`npm link` (in package dir)
-
-`npm link @cellebrite/design-system` (in target project)
-
-## How to consume from Artifactory
-
-You will need to create an .npmrc file using the following guide:
-https://cellebrite.atlassian.net/wiki/spaces/DevOps/pages/33544929303/NPM+Packages+for+new+Artifactory+-+cellebrite.jfrog.io
-
-## How to deploy a new version
-
-- Update the version number using the `npm version` command.
-- Open a new merge request ( Reviewers will be assigned automatically ).
-- The reviewers would receive an email upon merge request creation, if you need a faster response time you can send the merge request over @Slack #design-system.
-- Once merge request is approved and pipeline is successful,
-  the new version will be deployed.
-- Jenkins pipeline: http://jenkins-access.cellebrite.local:8080/view/Shared/job/Design-System/
